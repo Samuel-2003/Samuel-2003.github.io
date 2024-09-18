@@ -1,0 +1,411 @@
+/* Base styles */
+body {
+    font-family: 'Century Gothic', sans-serif; /* Cambiado a Century Gothic */
+    margin: 0; /* Elimina el margen por defecto del body */
+    padding: 0; /* Elimina el padding por defecto del body */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave de 0.3s para cambios de color de fondo y color de texto */
+    background-color: #138eb7; /* Color de fondo celeste */
+    color: #abb0b6; /* Color del texto */
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Ajustado para mejor espacio */
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+    padding: 16px 20px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-wrap: wrap; /* Para ajustar mejor en dispositivos móviles */
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ffff; /* Color celeste */
+    text-decoration: none;
+    margin: 10 auto; /* Margen automático a los lados para centrar */
+    display: inline-block; /* Cambia a inline-block para que el margen automático funcione */
+    padding: 0 20px; /* Añadir padding para darle más espacio alrededor del texto */
+}
+
+
+.neon-text {
+    color: #2d3694; /* Color celeste */
+    text-shadow:
+        0 0 5px #b0e0e6,
+        0 0 10px #b0e0e6,
+        0 0 20px #00ffff, /* Cambio al color celeste */
+        0 0 30px #00ffff, /* Cambio al color celeste */
+        0 0 40px #00ffff, /* Cambio al color celeste */
+        0 0 50px #00ffff, /* Cambio al color celeste */
+        0 0 60px #00ffff, /* Cambio al color celeste */
+        0 0 70px #00ffff; /* Cambio al color celeste */
+}
+
+.navbar {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Centra los elementos de navegación */
+}
+
+.nav-pills {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: #244882;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: #244882;
+    color: #fff;
+}
+
+.dropdown-toggle::after {
+    content: ' ▼';
+    font-size: 0.8rem;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 200px;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #8b8787;
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f8f8f8;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.btn-login,
+.btn-social {
+    background-color: #244882;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover,
+.btn-social:hover {
+    background-color: #0056b3;
+}
+
+.btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 34px;
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #244882;
+}
+
+.toggle-checkbox:checked + .toggle-label:before {
+    transform: translateX(26px);
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.content .text {
+    flex: 1;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari brand neon-text*/
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+.content .image {
+    flex: 1;
+    padding: 20px;
+}
+
+.content img {
+    max-width: 60%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.content img:hover {
+    transform: scale(1.1);
+}
+
+.content p {
+    font-size: 1rem;
+    color: #3f3d3d;
+    line-height: 1.6;
+}
+
+.services-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.services-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.services-header .service-image {
+    flex: 1;
+    padding: 20px;
+}
+
+.services-header .service-text {
+    flex: 1;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+.services-header img {
+    max-width: 70%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.services-header img:hover {
+    transform: scale(1.1);
+}
+
+.services-header p {
+    font-size: 1rem;
+    color: #3f3d3d;
+    line-height: 1.6;
+}
+
+.footer {
+    background: rgba(255, 255, 255, 0.7); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    text-align: center;
+}
+
+.social-media {
+    margin-bottom: 1px;
+}
+
+.social-media a {
+    margin: 0 10px; /* Ajustar el margen según sea necesario */
+    display: inline-block;
+    width: 32px; /* Tamaño más pequeño para los íconos */
+    height: 32px; /* Tamaño más pequeño para los íconos */
+}
+
+.social-media img {
+    width: 100%;
+    height: auto;
+}
+
+.facebook-icon img,
+.whatsapp-icon img {
+    width: 32px; /* Tamaño más pequeño para los íconos */
+    height: 32px; /* Tamaño más pequeño para los íconos */
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-buttons {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap; /* Ajuste para dispositivos móviles */
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #ffffff;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        display: none;
+        z-index: 999;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .btn-menu {
+        display: block;
+    }
+
+    .content,
+    .services-header {
+        flex-direction: column;
+    }
+
+    .content img,
+    .services-header img {
+        max-width: 100%;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    .content p,
+    .content h2,
+    .services-header p,
+    .services-header h2 {
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.dark-mode .header {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .brand,
+body.dark-mode .nav-link,
+body.dark-mode .dropdown-item {
+    color: #ffffff;
+}
+
+body.dark-mode .dropdown-menu {
+    background-color: #333;
+}
+
+body.dark-mode .dropdown-item:hover {
+    background-color: #444;
+}
+
+body.dark-mode .btn-login,
+body.dark-mode .btn-social {
+    background-color: #333;
+}
+
+body.dark-mode .btn-login:hover,
+body.dark-mode .btn-social:hover {
+    background-color: #444;
+}
