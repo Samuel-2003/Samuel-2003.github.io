@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background: url('imagenes/J4o.gif') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+.welcome-card, .status-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+    /* Fallback for browsers that do not support backdrop-filter */
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Increased gap for better spacing */
+    max-width: 1000px; /* Adjusted max width */
+}
+
+.button-container a {
+    color: #000;
+    text-decoration: none;
+    background: #fff; /* Keep the white background */
+    padding: 40px; /* Increased padding for larger buttons */
+    border-radius: 10px;
+    width: 200px; /* Increased width for larger buttons */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background 0.3s;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-container a img {
+    width: 70px; /* Increased size of the images */
+    height: 70px; /* Increased size of the images */
+    margin-bottom: 10px;
+}
+
+.button-container a span {
+    display: block;
+    font-size: 20px; /* Increased font size */
+    font-weight: bold;
+}
+
+.button-container a:hover {
+    transform: translateY(-10px);
+    background: rgba(240, 240, 240, 1); /* Slightly darker white for hover */
+}
+
+.status-card {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+}
+
+.status-card p, .status-card a {
+    margin: 0;
+}
+
+.status-card a {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    transition: background 0.3s;
+    /* Fallback for browsers that do not support backdrop-filter */
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+}
+
+.status-card a:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        max-width: 100%;
+    }
+
+    .button-container a {
+        width: calc(50% - 20px);
+        padding: 20px;
+    }
+
+    .button-container a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .button-container a span {
+        font-size: 16px;
+    }
+
+    .status-card {
+        position: static;
+        margin-top: 20px;
+        text-align: center;
+    }
+}
