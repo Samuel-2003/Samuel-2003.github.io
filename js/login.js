@@ -10,7 +10,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log('Inicio de sesión exitoso:', userCredential.user);
-            window.location.href = '../dashboard.php'; // Redirigir después del login
+            window.location.href = '../dashboard.html'; // Redirigir después del login
         })
         .catch((error) => {
             console.error('Error en el inicio de sesión:', error.message);

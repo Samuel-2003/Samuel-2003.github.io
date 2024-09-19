@@ -10,7 +10,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log('Registro exitoso:', userCredential.user);
-            window.location.href = 'login.php'; // Redirigir después del registro
+            window.location.href = 'login.html'; // Redirigir después del registro
         })
         .catch((error) => {
             console.error('Error en el registro:', error.message);
