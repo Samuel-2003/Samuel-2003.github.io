@@ -1,53 +1,67 @@
-<?php
-session_start();
-
-// Verifica si el usuario ha iniciado sesión
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login/index.html");
-    exit;
-}
-
-$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario';
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesd.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="./firebase-config.js"></script>
+    <script type="module" src="./dashboard.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="welcome-card">
-            <h2>Bienvenido, <?php echo htmlspecialchars($user_name); ?></h2>
+            <h2 id="welcome-message">Bienvenido, Usuario</h2>
         </div>
         <div class="button-container">
-            <a href="Productos/productos.php">
+            <a href="Productos/productos.html">
                 <img src="imagenes/productos.png" alt="Productos">
                 <span>Productos</span>
             </a>
-            <a href="proforma/proforma.php">
-                <img src="imagenes/proforma1.png" alt="Proforma">
+            <a href="proforma/proforma.html">
+                <img src="imagenes/proforma1.jpg" alt="Proforma">
                 <span>Proforma</span>
             </a>
-            <a href="venta/ventas.php">
+            <a href="venta/ventas.html">
                 <img src="imagenes/ventas.png" alt="Ventas">
                 <span>Lista Ventas</span>
             </a>
-            <a href="usuario/usuario.php">
+            <a href="usuario/usuario.html">
                 <img src="imagenes/asistencia.png" alt="Registrar tu Asistencia">
                 <span>Perfil de Usuario</span>
             </a>
         </div>
         <div class="status-card">
             <p>Has iniciado sesión correctamente.</p>
-            <a href="logout.php">Cerrar sesión</a>
+            <a href="logout.html" id="logout">Cerrar sesión</a>
         </div>
     </div>
+
+    <script type="module">
+        import { auth } from './firebase-config.js';
+        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // El usuario está autenticado
+                const userName = user.displayName || 'Usuario';
+                document.getElementById('welcome-message').innerText = `Bienvenido, ${userName}`;
+            } else {
+                // El usuario no está autenticado
+                window.location.href = '../login/login.html'; // Redirigir a la página de login
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', (event) => {
+            event.preventDefault();
+            signOut(auth).then(() => {
+                window.location.href = '../login/login.html'; // Redirigir a la página de login
+            }).catch((error) => {
+                console.error('Error al cerrar sesión:', error);
+            });
+        });
+    </script>
 </body>
 </html>
