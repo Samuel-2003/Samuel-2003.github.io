@@ -11,7 +11,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         .then((userCredential) => {
             console.log('Registro exitoso:', userCredential.user);
             window.location.href = 'login.html'; // Redirigir después del registro
-        })
+        }) 
         .catch((error) => {
             console.error('Error en el registro:', error.message);
             alert('Error: ' + error.message);

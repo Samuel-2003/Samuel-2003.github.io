@@ -409,3 +409,9 @@ body.dark-mode .btn-login:hover,
 body.dark-mode .btn-social:hover {
     background-color: #444;
 }
+
+.question-dark {
+    color: #333; /* Un gris muy oscuro, casi negro */
+    /* o puedes usar directamente negro: */
+    /* color: black; */
+}
