@@ -3,100 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <title>Registro e Inicio de Sesión</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="module" src="./firebase-config.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 300px;
+            max-width: 100%;
+        }
+        .form-container {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .toggle a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        #register-fields {
+            display: none;
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-in-out;
+        }
+        .slide-out {
+            animation: slideOut 0.5s ease-in-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <main class="main">
-            <div class="form-container">
-                <h2>Registrarse</h2>
-                <form id="register-form">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="area_trabajo" class="form-label">Área de Trabajo:</label>
-                        <input type="text" class="form-control" name="area_trabajo" id="area_trabajo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" name="email" id="email" required>
-                    </div>
-                    <div class="mb-3 position-relative">
-                        <label for="password" class="form-label">Contraseña:</label>
-                        <input type="password" class="form-control" name="password" id="password" required>
-                        <i class="far fa-eye password-toggle" id="togglePassword" style="position: absolute; right: 10px; top: 38px; cursor: pointer;"></i>
-                    </div>
-                    <div class="mb-3 position-relative">
-                        <label for="confirm_password" class="form-label">Confirmar Contraseña:</label>
-                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
-                        <i class="far fa-eye password-toggle" id="toggleConfirmPassword" style="position: absolute; right: 10px; top: 38px; cursor: pointer;"></i>
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono:</label>
-                        <input type="text" class="form-control" name="telefono" id="telefono">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
-                </form>
-            </div>
-        </main>
+        <div class="form-container">
+            <h2>Registro e Inicio de Sesión</h2>
+            <form id="auth-form">
+                <input type="email" id="email" placeholder="Correo Electrónico" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <div id="register-fields">
+                    <input type="text" id="nombre" placeholder="Nombre">
+                    <input type="text" id="area_trabajo" placeholder="Área de Trabajo">
+                    <input type="tel" id="telefono" placeholder="Teléfono">
+                </div>
+                <button type="submit" id="submit-btn">Iniciar Sesión</button>
+            </form>
+            <button id="toggle-mode">Cambiar a Registro</button>
+            <button id="google-auth">Iniciar sesión con Google</button>
+            <button id="phone-auth">Iniciar sesión con Teléfono</button>
+        </div>
     </div>
 
     <script type="module">
         import { auth } from './firebase-config.js';
-        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+        import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-        document.getElementById('register-form').addEventListener('submit', (event) => {
+        let isLoginMode = true;
+        const form = document.getElementById('auth-form');
+        const toggleModeBtn = document.getElementById('toggle-mode');
+        const submitBtn = document.getElementById('submit-btn');
+        const registerFields = document.getElementById('register-fields');
+
+        toggleModeBtn.addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            registerFields.style.display = isLoginMode ? 'none' : 'block';
+            submitBtn.textContent = isLoginMode ? 'Iniciar Sesión' : 'Registrarse';
+            toggleModeBtn.textContent = isLoginMode ? 'Cambiar a Registro' : 'Cambiar a Inicio de Sesión';
+            form.classList.add(isLoginMode ? 'slide-in' : 'slide-out');
+            setTimeout(() => form.classList.remove('slide-in', 'slide-out'), 500);
+        });
+
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
-
-            const nombre = document.getElementById('nombre').value;
-            const area_trabajo = document.getElementById('area_trabajo').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const confirm_password = document.getElementById('confirm_password').value;
-            const telefono = document.getElementById('telefono').value;
 
-            if (password !== confirm_password) {
-                alert("Las contraseñas no coinciden.");
-                return;
+            if (isLoginMode) {
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        alert("Inicio de sesión exitoso");
+                        // Redirigir o actualizar UI
+                    })
+                    .catch((error) => {
+                        alert("Error: " + error.message);
+                    });
+            } else {
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Aquí puedes guardar los datos adicionales en Firestore
+                        alert("Registro exitoso");
+                        // Redirigir o actualizar UI
+                    })
+                    .catch((error) => {
+                        alert("Error: " + error.message);
+                    });
             }
+        });
 
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Usuario creado
-                    const user = userCredential.user;
-
-                    // Aquí puedes almacenar el nombre, área de trabajo y teléfono en Firestore
-                    // Ejemplo de cómo almacenar datos adicionales en Firestore (debes tener Firestore configurado)
-                    // const db = getFirestore();
-                    // setDoc(doc(db, "usuarios", user.uid), {
-                    //     nombre: nombre,
-                    //     area_trabajo: area_trabajo,
-                    //     telefono: telefono
-                    // });
-
-                    alert("Registro exitoso.");
-                    window.location.href = 'login.html'; // Redirigir a la página de inicio
+        document.getElementById('google-auth').addEventListener('click', () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    alert("Inicio de sesión con Google exitoso");
+                    // Redirigir o actualizar UI
                 })
                 .catch((error) => {
-                    console.error("Error al registrar:", error);
-                    alert(error.message);
+                    alert("Error: " + error.message);
                 });
         });
 
-        // Funcionalidad para mostrar/ocultar la contraseña
-        document.getElementById('togglePassword').addEventListener('click', () => {
-            const passwordInput = document.getElementById('password');
-            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-        });
+        document.getElementById('phone-auth').addEventListener('click', () => {
+            const phoneNumber = prompt("Ingrese su número de teléfono con código de país:");
+            if (phoneNumber) {
+                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'phone-auth', {
+                    'size': 'invisible',
+                    'callback': (response) => {
+                        // reCAPTCHA solved, allow signInWithPhoneNumber.
+                    }
+                });
 
-        document.getElementById('toggleConfirmPassword').addEventListener('click', () => {
-            const confirmPasswordInput = document.getElementById('confirm_password');
-            confirmPasswordInput.type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+                signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+                    .then((confirmationResult) => {
+                        window.confirmationResult = confirmationResult;
+                        const verificationCode = prompt("Ingrese el código de verificación:");
+                        return confirmationResult.confirm(verificationCode);
+                    })
+                    .then((result) => {
+                        alert("Inicio de sesión con teléfono exitoso");
+                        // Redirigir o actualizar UI
+                    })
+                    .catch((error) => {
+                        alert("Error: " + error.message);
+                    });
+            }
         });
     </script>
 </body>
