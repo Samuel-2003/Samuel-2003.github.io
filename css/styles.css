@@ -1008,3 +1008,12 @@ footer {
     opacity: 1;
     transform: translateX(0);
 }
+
+/* Ajuste para evitar que el menú bloquee la pantalla cuando no está activo */
+.navbar-menu:not(.active) {
+    visibility: hidden;
+}
+
+.navbar-menu.active {
+    visibility: visible;
+}
