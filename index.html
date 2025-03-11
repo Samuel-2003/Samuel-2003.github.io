@@ -3,66 +3,551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refrigeración Soluciones Línea Blanca</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Samuel García Turpo | Ingeniero de Software con IA</title>
+    <link rel="icon" href="assets/img/favicon.jpg" type="image/jpg">
+    <link rel="shortcut icon" href="assets/img/favicon.jpg" type="image/jpg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script defer src="/__/firebase/11.4.0/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/11.4.0/firebase-performance-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <a href="#" class="brand neon-text" aria-label="Refrigeración Soluciones Línea Blanca">Refrigeración Soluciones Línea Blanca</a>
-            <div class="nav-buttons">
-                <a class="btn-login" href="login/register.html" aria-label="Login">Login</a>
-                <div class="toggle-switch">
-                    <input type="checkbox" id="modeToggle" class="toggle-checkbox" onclick="toggleMode()">
-                    <label for="modeToggle" class="toggle-label" aria-label="Toggle Dark Mode"></label>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <h1>SG</h1>
                 </div>
-                <a href="https://www.facebook.com/profile.php?id=100077470710860" target="_blank" class="btn-social facebook-icon" rel="noopener noreferrer" aria-label="Facebook">
-                    <img src="imagenes/facebook.png" alt="Facebook">
-                </a>
-                <a href="https://wa.me/51984221380" target="_blank" class="btn-social whatsapp-icon" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <img src="imagenes/WhatsApp.svg" alt="WhatsApp">
-                </a>
-            </div>
-        </header>
-        <main class="main">
-            <div class="content">
-                <div class="image">
-                    <img src="imagenes/imagen.jpg" alt="Taller">
-                </div>
-                <div class="text">
-                    <p>Somos un taller especializado en la reparación y mantenimiento de electrodomésticos de línea blanca. Contamos con un equipo de técnicos altamente capacitados y herramientas de última generación para brindar un servicio de calidad.</p>
-                </div>
-            </div>
-            <div class="services-section">
-                <div class="services-header">
-                    <div class="service-image">
-                        <img src="imagenes/electrodomesticos.png" alt="Más que una máquina">
-                    </div>
-                    <div class="service-text">
-                        <p>REALIZAMOS TODO TIPO DE REPARACIÓN, MANTENIMIENTO Y VENTA DE REPUESTOS PARA TODO TIPO DE ELECTRODOMÉSTICOS.</p>
-                    </div>
+                <ul class="navbar-menu" id="navbar-menu">
+                    <button id="menu-close-btn" class="menu-close-btn" title="Cerrar menú" aria-label="Cerrar menú">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#experiencia-ia">Experiencia en IA</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    
+                </ul>
+                <div class="navbar-toggle" id="navbar-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <div class="services-section">
-                <div class="services-header">
-                    <div class="service-image">
-                        <img src="imagenes/servicios.jpg" alt="Más que una máquina">
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Samuel García</h1>
+                    <h2>Ingeniero de Software con Inteligencia Artificial</h2>
+                    <p>Desarrollando sistemas inteligentes para cambiar el mundo, desde el aprendizaje automático hasta la robótica.</p>
+                    <div class="hero-buttons">
+                        <a href="#contacto" class="btn btn-primary">Contáctame</a>
+                        <a href="#proyectos" class="btn btn-secondary">Ver Proyectos</a>
                     </div>
-                    <div class="service-text">
-
-
-                        <h3 class="question-dark">¿Que me diferencia del resto?</h3>
-                        <p>Mi negocio es mas que solo un trabajo. Cada vez que me embarco en un proyecto, procuro que todo vaya acorde con mis valores. Así sé que los buenos resuldados están garantizados.</p>
-                    </div>
-
                 </div>
-
+                <div class="hero-image">
+                    <div class="profile-img-container">
+                        <img src="assets/img/profile.jpg" alt="Samuel García Turpo" class="profile-img">
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="scripts.js"></script>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-mi" class="about">
+            <div class="section-container">
+                <h2 class="section-title">Sobre Mí</h2>
+                <div class="about-content">
+                    <div class="about-info">
+                        <p>Soy un Ingeniero de Software con especialización en Inteligencia Artificial, egresado de SENATI con el apoyo de Beca 18. Mi pasión es desarrollar soluciones tecnológicas innovadoras que resuelvan problemas reales.</p>
+                        <p>Tengo experiencia en desarrollo full stack y un profundo interés en la implementación de tecnologías de IA, machine learning y redes neuronales en aplicaciones prácticas para la industria.</p>
+                        <p>Como becario de Beca 18, he demostrado compromiso y excelencia académica, completando con éxito mi formación en Ingeniería de Software con IA.</p>
+                        <div class="about-details">
+                            <div class="detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Cusco, Perú</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Ingeniería de Software con IA - SENATI</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Full Stack Developer - ByM Technology Solutions SAC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experiencia" class="experience">
+            <div class="section-container">
+                <h2 class="section-title">Experiencia</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Feb 2025 - Actualidad</div>
+                            <h3>Desarrollador Full Stack</h3>
+                            <h4>ByM Technology Solutions SAC</h4>
+                            <p>Responsable del desarrollo de sistemas web, incluyendo tanto la parte frontend (visual) como la lógica de funcionamiento backend.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Sep 2023 - Nov 2024</div>
+                            <h3>Practicante de Software</h3>
+                            <h4>Línea Blanca</h4>
+                            <p>Desarrollo y mantenimiento de aplicaciones para mejorar la eficiencia de la producción y la calidad del producto. Implementación de soluciones de automatización.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="proyectos" class="projects">
+            <div class="section-container">
+                <h2 class="section-title">Proyectos</h2>
+                <div class="project-filter">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="ia">IA</button>
+                    <button class="filter-btn" data-filter="app">Aplicaciones</button>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-category="ia">
+                        <div class="project-img">
+                            <img src="assets/img/project1.jpg" alt="Proyecto Redes Neuronales">
+                        </div>
+                        <div class="project-info">
+                            <h3>Proyecto Redes Neuronales</h3>
+                            <p>Implementación de redes neuronales para análisis predictivo de datos industriales.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>TensorFlow</span>
+                                <span>PyTorch</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Samuel-2003/" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="web">
+                        <div class="project-img">
+                            <img src="assets/img/project2.jpg" alt="Sistema Web de Gestión">
+                        </div>
+                        <div class="project-info">
+                            <h3>Sistema Web de Gestión</h3>
+                            <p>Desarrollo de plataforma de gestión empresarial con módulos personalizados.</p>
+                            <div class="project-tech">
+                                <span>Laravel</span>
+                                <span>Vue.js</span>
+                                <span>MySQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Samuel-2003/" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="app">
+                        <div class="project-img">
+                            <img src="assets/img/project3.jpg" alt="Aplicación Móvil">
+                        </div>
+                        <div class="project-info">
+                            <h3>Aplicación Móvil con IA</h3>
+                            <p>App móvil para reconocimiento de patrones utilizando visión artificial.</p>
+                            <div class="project-tech">
+                                <span>Flutter</span>
+                                <span>Firebase</span>
+                                <span>TensorFlow Lite</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Samuel-2003/" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="educacion" class="education">
+            <div class="section-container">
+                <h2 class="section-title">Educación</h2>
+                <div class="education-container">
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Ingeniería de Software con Inteligencia Artificial</h3>
+                            <h4>SENATI - Servicio Nacional de Adiestramiento en Trabajo Industrial</h4>
+                            <p>Abril 2022 - Noviembre 2024</p>
+                            <ul class="education-details">
+                                <li>Becario de Beca 18</li>
+                                <li>6to ciclo completado</li>
+                                <li>Especialización en desarrollo de sistemas inteligentes y aprendizaje automático</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Cisco Hacking Ético</h3>
+                            <h4>SENATI</h4>
+                            <p>Abril 2022 - Noviembre 2024</p>
+                            <ul class="education-details">
+                                <li>Seguridad informática y técnicas de hacking ético</li>
+                                <li>Identificación de vulnerabilidades en sistemas y redes</li>
+                                <li>Implementación de medidas de protección de información</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Fundamentos del Análisis de Datos</h3>
+                            <h4>Cisco Networking Academy</h4>
+                            <p>Septiembre 2023 - Octubre 2023</p>
+                            <ul class="education-details">
+                                <li>Conceptos básicos del análisis de datos</li>
+                                <li>Metodologías y herramientas para procesamiento de datos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3>Introducción a la Ciencia de Datos</h3>
+                            <h4>CISCO ACADEMY</h4>
+                            <p>Curso completado exitosamente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="habilidades" class="skills">
+            <div class="section-container">
+                <h2 class="section-title">Habilidades</h2>
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>Lenguajes de Programación</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-java"></i>
+                                <span>Java</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-js"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-php"></i>
+                                <span>PHP</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-code"></i>
+                                <span>C#</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-code"></i>
+                                <span>R</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Bases de Datos</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <span>MySQL</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <span>SQL Server</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <span>Oracle</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-fire"></i>
+                                <span>Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Frameworks y Tecnologías</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fab fa-laravel"></i>
+                                <span>Laravel</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-vuejs"></i>
+                                <span>Vue.js</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Flutter</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-unity"></i>
+                                <span>Unity</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-cloud"></i>
+                                <span>Google Cloud</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-android"></i>
+                                <span>Google Play Console</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Inteligencia Artificial</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fas fa-brain"></i>
+                                <span>Machine Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-network-wired"></i>
+                                <span>Redes Neuronales</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Análisis Predictivo</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <span>Big Data</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Otras Habilidades</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Análisis de Amenazas</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-file-csv"></i>
+                                <span>Recopilación de Datos</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-code-branch"></i>
+                                <span>Control de versiones (Git)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Experiencia en IA actualizada con nuevo estilo -->
+        <section id="experiencia-ia" class="ia-experience">
+            <div class="section-container">
+                <h2 class="section-title">Experiencia en IA</h2>
+                <p class="section-description">Integración de herramientas de IA para optimizar procesos de desarrollo</p>
+                
+                <div class="ia-models-container">
+                    <div class="ia-model-card">
+                        <div class="ia-model-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="ia-model-content">
+                            <h3>ChatGPT & Claude</h3>
+                            <p>Integración de modelos de lenguaje para automatización de tareas y asistencia en desarrollo</p>
+                            <ul class="ia-model-list">
+                                <li><i class="fas fa-check-circle"></i> Optimización de procesos de desarrollo</li>
+                                <li><i class="fas fa-check-circle"></i> Generación y revisión de código</li>
+                                <li><i class="fas fa-check-circle"></i> Automatización de documentación</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="ia-model-card">
+                        <div class="ia-model-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="ia-model-content">
+                            <h3>Gemini</h3>
+                            <p>Utilización de capacidades multimodales para análisis y procesamiento de datos</p>
+                            <ul class="ia-model-list">
+                                <li><i class="fas fa-check-circle"></i> Análisis de imágenes y código</li>
+                                <li><i class="fas fa-check-circle"></i> Generación de contenido multimodal</li>
+                                <li><i class="fas fa-check-circle"></i> Procesamiento de datos estructurados</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="ia-model-card">
+                        <div class="ia-model-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="ia-model-content">
+                            <h3>LLaMA</h3>
+                            <p>Implementación de modelos de IA open-source para soluciones personalizadas</p>
+                            <ul class="ia-model-list">
+                                <li><i class="fas fa-check-circle"></i> Desarrollo de chatbots especializados</li>
+                                <li><i class="fas fa-check-circle"></i> Procesamiento de lenguaje natural</li>
+                                <li><i class="fas fa-check-circle"></i> Análisis de sentimientos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="contact">
+            <div class="section-container">
+                <h2 class="section-title">Contacto</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>¡Hablemos!</h3>
+                        <p>Estoy abierto a oportunidades de trabajo, colaboraciones en proyectos o simplemente para intercambiar ideas sobre tecnología y desarrollo.</p>
+                        <div class="contact-links">
+                            <a href="mailto:garciaturposamuel@gmail.com" class="contact-link">
+                                <i class="fas fa-envelope"></i>
+                                <span>garciaturposamuel@gmail.com</span>
+                            </a>
+                            <a href="tel:+51937002844" class="contact-link">
+                                <i class="fas fa-phone"></i>
+                                <span>+51 937 002 844</span>
+                            </a>
+                            <a href="https://web.facebook.com/samuel.garciaturpo/" target="_blank" class="contact-link">
+                                <i class="fab fa-facebook"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://github.com/Samuel-2003/" target="_blank" class="contact-link">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/samuel-garcia-turpo-1a80a3273" target="_blank" class="contact-link">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://wa.me/51937002844" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Asunto</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensaje</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>Samuel García Turpo</h2>
+                <p>Ingeniero de Software con IA</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://github.com/Samuel-2003/" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/samuel-garcia-turpo-1a80a3273" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://web.facebook.com/samuel.garciaturpo/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/51937002844" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Samuel García Turpo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                let app = firebase.app();
+                let features = [
+                    'auth', 
+                    'database', 
+                    'firestore',
+                    'functions',
+                    'messaging', 
+                    'storage', 
+                    'analytics', 
+                    'remoteConfig',
+                    'performance',
+                ].filter(feature => typeof app[feature] === 'function');
+                console.log(`Firebase SDK loaded with ${features.join(', ')}`);
+                
+                // Inicializar Firebase Analytics
+                firebase.analytics();
+            } catch (e) {
+                console.error(e);
+                console.log('Error loading the Firebase SDK, check the console.');
+            }
+        });
+    </script>
 </body>
-</html> 
+</html>

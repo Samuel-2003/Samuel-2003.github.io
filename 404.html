@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada | Samuel García Turpo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .error-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: var(--primary-color);
+            padding: 2rem;
+        }
+        
+        .error-code {
+            font-size: 10rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .error-message {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin: 1rem 0 2rem;
+        }
+        
+        .error-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .home-btn:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Página no encontrada</h2>
+        <p class="error-description">Lo sentimos, la página que estás buscando no existe o ha sido movida a otra ubicación.</p>
+        <a href="index.html" class="home-btn">
+            <i class="fas fa-arrow-left"></i>
+            Volver al inicio
+        </a>
+    </div>
+    
+    <script>
+        // Firebase Analytics para seguimiento de errores 404
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof firebase !== 'undefined' && typeof firebase.analytics === 'function') {
+                    firebase.analytics().logEvent('404_error', {
+                        page_path: window.location.pathname
+                    });
+                }
+            } catch (e) {
+                console.error('Error logging analytics', e);
+            }
+        });
+    </script>
+</body>
+</html>
