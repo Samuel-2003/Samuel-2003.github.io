@@ -1,16 +1,30 @@
 /* Base */
 :root {
-    --primary-color: #0d1117;
-    --secondary-color: #161b22;
-    --accent-color: #58a6ff;
-    --text-color: #c9d1d9;
-    --text-secondary: #8b949e;
-    --border-color: #30363d;
-    --card-color: #21262d;
-    --success-color: #238636;
-    --danger-color: #f85149;
-    --warning-color: #f0883e;
+    /* Liquid Glass Theme Color Palette */
+    --primary-color: #F0F2F5; /* Light gray / white */
+    --secondary-color: #E9ECEF; /* Slightly darker gray for depth */
+    --card-bg-color: rgba(255, 255, 255, 0.65); /* Semi-transparent white for cards */
+    --navbar-bg-color: rgba(255, 255, 255, 0.75); /* Semi-transparent white for navbar */
+    --accent-color-primary: #A0D2DB; /* Soft pastel blue */
+    --accent-color-secondary: #F5D6D9; /* Soft pastel pink */
+    --text-color-primary: #333333; /* Dark gray for primary text */
+    --text-color-secondary: #555555; /* Medium gray for secondary text */
+    --border-color: rgba(0, 0, 0, 0.1); /* Light, subtle gray for borders */
+    --card-border-color: rgba(255, 255, 255, 0.25); /* Subtle white border for cards - slightly more opaque */
+    --shadow-color: rgba(0, 0, 0, 0.08); /* Very light, diffused shadow */
+    --button-shadow-color: rgba(0, 0, 0, 0.1); /* Slightly darker shadow for buttons */
+
+
+    /* Existing variables (some might be overridden or removed if redundant) */
+    --success-color: #238636; /* Keeping for now, can be themed later */
+    --danger-color: #f85149;  /* Keeping for now, can be themed later */
+    --warning-color: #f0883e; /* Keeping for now, can be themed later */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+    /* Rounded Corners */
+    --border-radius-large: 16px;
+    --border-radius-medium: 12px;
+    --border-radius-small: 8px;
 }
 
 * {
@@ -26,19 +40,20 @@ html {
 body {
     font-family: var(--font-primary);
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: var(--text-color-primary); /* Updated to primary text color */
     line-height: 1.6;
     overflow-x: hidden;
 }
 
 a {
     text-decoration: none;
-    color: var(--accent-color);
-    transition: color 0.3s ease;
+    color: var(--accent-color-primary); /* Updated to primary accent color */
+    transition: color 0.25s ease-in-out, transform 0.2s ease-out; /* Refined transition */
 }
 
 a:hover {
-    color: #79b9ff;
+    color: #87CEEB; /* Slightly darker/brighter version of primary accent */
+    transform: translateY(-2px); /* Slightly more lift */
 }
 
 ul {
@@ -49,10 +64,12 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     font-weight: 600;
     line-height: 1.25;
+    color: var(--text-color-primary); /* Ensuring headings use primary text color */
 }
 
 p {
     margin-bottom: 1.5rem;
+    color: var(--text-color-secondary); /* Paragraphs can use secondary text color */
 }
 
 .section-container {
@@ -66,7 +83,7 @@ p {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-color-primary); /* Updated */
 }
 
 .section-title::after {
@@ -77,7 +94,7 @@ p {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color-primary); /* Updated */
     border-radius: 2px;
 }
 
@@ -85,59 +102,79 @@ p {
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    border-radius: var(--border-radius-medium); /* Updated border radius */
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.25s ease-in-out, border-color 0.25s ease-in-out; /* Refined and added border-color */
+    border: 1px solid transparent; /* Base transparent border */
+    box-shadow: 0 4px 8px var(--button-shadow-color);
 }
 
 .btn-primary {
-    background-color: var(--accent-color);
-    color: #fff;
+    background: linear-gradient(135deg, var(--accent-color-primary), var(--accent-color-secondary));
+    color: var(--text-color-primary);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: #4089e4;
-    color: #fff;
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 12px var(--button-shadow-color);
+    background: linear-gradient(135deg, #87CEEB, #F7C8CE); /* Slightly more vibrant on hover */
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px var(--button-shadow-color);
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.4);
+    color: var(--text-color-primary);
+    border: 1px solid var(--card-border-color);
 }
 
 .btn-secondary:hover {
-    background-color: var(--card-color);
-    border-color: var(--accent-color);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 12px var(--button-shadow-color);
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: var(--accent-color-primary);
 }
+
+.btn-secondary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px var(--button-shadow-color);
+}
+
 
 /* Navbar */
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
     z-index: 1000;
-    background-color: rgba(13, 17, 23, 0.95);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    transition: 0.3s ease;
+    background-color: var(--navbar-bg-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 24px var(--shadow-color); /* Updated shadow */
+    border: 1px solid var(--card-border-color);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, top 0.3s ease-out;  /* Refined easing */
 }
 
 .navbar.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px var(--shadow-color);
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
 }
 
 .navbar-logo {
@@ -145,11 +182,12 @@ p {
     align-items: center;
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
 }
 
 .navbar-logo h1 {
     margin: 0;
+    color: var(--text-color-primary);
 }
 
 .navbar-menu {
@@ -161,15 +199,16 @@ p {
 }
 
 .navbar-menu a {
-    color: var(--text-color);
+    color: var(--text-color-primary);
     font-weight: 500;
     font-size: 1rem;
     padding: 0.5rem;
-    transition: all 0.3s ease;
+    transition: transform 0.25s ease-out, color 0.25s ease-in-out;  /* Refined timing and easing */
 }
 
 .navbar-menu a:hover, .navbar-menu a.active {
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
+    transform: scale(1.1);
 }
 
 .navbar-toggle {
@@ -182,17 +221,17 @@ p {
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    transition: all 0.3s ease;
-    background-color: var(--text-color);
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-out; /* Specific properties */
+    background-color: var(--text-color-primary);
 }
 
 /* Hero Section */
 .hero {
-    padding-top: 5rem;
+    padding-top: 120px; /* Increased padding for better spacing below floating navbar */
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Subtle gradient for hero bg */
 }
 
 .hero-container {
@@ -212,19 +251,19 @@ p {
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    color: #fff;
+    color: var(--text-color-primary);
 }
 
 .hero-content h2 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
 }
 
 .hero-buttons {
@@ -245,8 +284,8 @@ p {
     height: 300px;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid var(--accent-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 5px solid var(--accent-color-primary);
+    box-shadow: 0 8px 24px var(--shadow-color); /* Consistent with other card shadows */
 }
 
 .profile-img {
@@ -257,7 +296,7 @@ p {
 
 /* About Section */
 .about {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 .about-content {
@@ -265,6 +304,13 @@ p {
     align-items: center;
     justify-content: space-between;
     gap: 3rem;
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-large);
+    padding: 2.5rem; /* Increased padding */
+    box-shadow: 0 8px 24px var(--shadow-color);
+    border: 1px solid var(--card-border-color);
 }
 
 .about-info {
@@ -283,14 +329,14 @@ p {
 
 .detail i {
     font-size: 1.2rem;
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
     margin-right: 1rem;
     width: 25px;
 }
 
 /* Experience Section */
 .experience {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 .timeline {
@@ -310,28 +356,27 @@ p {
     transform: translateX(-50%);
 }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-}
-
 .timeline-dot {
     position: absolute;
     left: 50%;
     width: 20px;
     height: 20px;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color-primary);
     border-radius: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    border: 3px solid var(--secondary-color); /* Make dot stand out on the line */
 }
 
 .timeline-content {
     width: calc(50% - 40px);
-    padding: 1.5rem;
-    background-color: var(--card-color);
-    border-radius: 6px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem; /* Increased padding */
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    border: 1px solid var(--card-border-color);
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -341,24 +386,25 @@ p {
 .timeline-date {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--accent-color);
+    color: var(--accent-color-secondary);
     margin-bottom: 0.5rem;
 }
 
 .timeline-content h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color-primary);
 }
 
 .timeline-content h4 {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
     margin-bottom: 1rem;
 }
 
 /* Projects Section */
 .projects {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 .project-filter {
@@ -370,21 +416,32 @@ p {
 }
 
 .filter-btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.6rem 1.2rem; /* Adjusted padding */
     border: 1px solid var(--border-color);
-    background-color: transparent;
-    color: var(--text-color);
-    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--text-color-primary);
+    border-radius: var(--border-radius-small);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.25s ease-in-out, border-color 0.25s ease-in-out; /* Refined transitions */
     font-weight: 500;
+    box-shadow: 0 2px 4px var(--button-shadow-color);
 }
 
-.filter-btn:hover, .filter-btn.active {
-    background-color: var(--accent-color);
-    color: #fff;
-    border-color: var(--accent-color);
+.filter-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 4px 8px var(--button-shadow-color);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--accent-color-primary);
 }
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--accent-color-primary), var(--accent-color-secondary));
+    color: var(--text-color-primary);
+    border-color: rgba(255,255,255,0.3);
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px var(--button-shadow-color);
+}
+
 
 .projects-grid {
     display: grid;
@@ -394,16 +451,19 @@ p {
 
 .project-card {
     position: relative;
-    border-radius: 8px;
+    border-radius: var(--border-radius-large);
     overflow: hidden;
-    background-color: var(--card-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Refined easing */
+    border: 1px solid var(--card-border-color);
 }
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .project-img {
@@ -416,7 +476,7 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-out; /* Refined easing */
 }
 
 .project-card:hover .project-img img {
@@ -430,6 +490,7 @@ p {
 .project-info h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color-primary);
 }
 
 .project-tech {
@@ -440,11 +501,12 @@ p {
 }
 
 .project-tech span {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     padding: 0.3rem 0.6rem;
-    border-radius: 4px;
+    border-radius: var(--border-radius-small);
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
+    border: 1px solid var(--border-color);
 }
 
 .project-links {
@@ -453,25 +515,30 @@ p {
     margin-top: 1rem;
 }
 
-.project-links a {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: var(--secondary-color);
+.project-links a { /* Icon button styling */
+    width: 40px; /* Increased size */
+    height: 40px; /* Increased size */
+    border-radius: var(--border-radius-medium); /* Consistent rounding */
+    background-color: rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.25s ease-in-out; /* Refined transitions */
+    color: var(--text-color-primary);
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 2px 4px var(--button-shadow-color);
 }
 
 .project-links a:hover {
-    background-color: var(--accent-color);
-    color: #fff;
+    background-color: var(--accent-color-primary);
+    color: var(--text-color-primary);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 4px 8px var(--button-shadow-color);
 }
 
 /* Education Section */
 .education {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 .education-container {
@@ -482,44 +549,49 @@ p {
 .education-item {
     display: flex;
     margin-bottom: 2rem;
-    background-color: var(--card-color);
-    border-radius: 8px;
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-large);
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    border: 1px solid var(--card-border-color);
 }
 
 .education-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    background-color: var(--accent-color);
+    min-width: 80px; /* Ensure icon area is consistent */
+    background-color: var(--accent-color-primary);
 }
 
 .education-icon i {
     font-size: 2rem;
-    color: #fff;
+    color: var(--text-color-primary);
 }
 
 .education-content {
     flex: 1;
-    padding: 1.5rem;
+    padding: 2rem; /* Increased padding */
 }
 
 .education-content h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color-primary);
 }
 
 .education-content h4 {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
     margin-bottom: 0.5rem;
 }
 
 .education-content p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    color: var(--text-color-secondary);
 }
 
 .education-details {
@@ -535,7 +607,7 @@ p {
 
 /* Skills Section */
 .skills {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 .skills-container {
@@ -545,17 +617,20 @@ p {
 }
 
 .skills-category {
-    background-color: var(--card-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem; /* Increased padding */
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    border: 1px solid var(--card-border-color);
 }
 
 .skills-category h3 {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
 }
 
 .skills-grid {
@@ -567,37 +642,43 @@ p {
 .skill-item {
     display: flex;
     align-items: center;
-    background-color: var(--secondary-color);
+    background-color: rgba(255,255,255, 0.2);
     padding: 0.8rem 1rem;
-    border-radius: 6px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    border-radius: var(--border-radius-medium);
+    transition: transform 0.25s ease-out, background-color 0.25s ease-in-out, border-color 0.25s ease-in-out; /* Refined */
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .skill-item:hover {
     transform: translateY(-5px);
-    background-color: rgba(88, 166, 255, 0.1);
+    background-color: var(--accent-color-secondary);
+    border-color: var(--accent-color-primary);
 }
 
 .skill-item i {
     font-size: 1.2rem;
     margin-right: 0.8rem;
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
 }
 
 /* Contact Section */
 .contact {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+.contact-info {
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2.5rem; /* Increased padding */
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    border: 1px solid var(--card-border-color);
 }
-
 .contact-info h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
+    color: var(--text-color-primary);
 }
 
 .contact-links {
@@ -610,9 +691,15 @@ p {
 .contact-link {
     display: flex;
     align-items: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease-out; /* Refined */
+    padding: 0.5rem 0; /* Add some padding for easier hover */
 }
-
+.contact-link span { /* Ensure text color is correct */
+    color: var(--text-color-secondary);
+}
+.contact-link:hover span {
+    color: var(--accent-color-primary);
+}
 .contact-link:hover {
     transform: translateX(10px);
 }
@@ -621,14 +708,17 @@ p {
     font-size: 1.2rem;
     margin-right: 1rem;
     width: 25px;
-    color: var(--accent-color);
+    color: var(--accent-color-primary);
 }
 
 .contact-form {
-    background-color: var(--card-color);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2.5rem; /* Increased padding */
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    border: 1px solid var(--card-border-color);
 }
 
 .form-group {
@@ -639,6 +729,7 @@ p {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    color: var(--text-color-primary);
 }
 
 .form-group input,
@@ -646,9 +737,9 @@ p {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid var(--border-color);
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    border-radius: 4px;
+    background-color: var(--primary-color);
+    color: var(--text-color-primary);
+    border-radius: var(--border-radius-small);
     font-family: var(--font-primary);
 }
 
@@ -660,7 +751,8 @@ p {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: var(--accent-color-primary);
+    background-color: var(--secondary-color);
 }
 
 /* Footer */
@@ -680,10 +772,11 @@ footer {
 .footer-logo h2 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color-primary);
 }
 
 .footer-logo p {
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
     margin-bottom: 2rem;
 }
 
@@ -694,33 +787,36 @@ footer {
     margin-bottom: 2rem;
 }
 
-.footer-social a {
+.footer-social a { /* Icon button styling */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--card-color);
-    transition: all 0.3s ease;
+    width: 45px; /* Slightly larger */
+    height: 45px; /* Slightly larger */
+    border-radius: var(--border-radius-medium); /* Consistent rounding */
+    background-color: rgba(255, 255, 255, 0.2); /* Translucent */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.25s ease-in-out; /* Refined transitions */
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 2px 4px var(--button-shadow-color);
 }
 
 .footer-social a:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-5px);
+    background-color: var(--accent-color-primary);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 4px 8px var(--button-shadow-color);
 }
 
 .footer-social i {
-    font-size: 1.2rem;
-    color: var(--text-color);
+    font-size: 1.3rem; /* Slightly larger icon */
+    color: var(--text-color-primary);
 }
 
 .footer-social a:hover i {
-    color: #fff;
+    color: var(--text-color-primary);
 }
 
 .footer-copyright {
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
 }
 
 /* Media Queries */
@@ -729,94 +825,62 @@ footer {
         flex-direction: column-reverse;
         text-align: center;
     }
-    
+
     .hero-content {
         margin-right: 0;
         margin-top: 2rem;
     }
-    
+
     .hero-buttons {
         justify-content: center;
     }
-    
+
     .timeline::before {
         left: 30px;
     }
-    
+
     .timeline-dot {
         left: 30px;
+        border-width: 2px; /* Adjust border for smaller dot appearance */
     }
-    
+
     .timeline-content {
-        width: calc(100% - 80px);
-        margin-left: 80px !important;
+        width: calc(100% - 70px); /* Adjusted width */
+        margin-left: 60px !important; /* Adjusted margin */
+        padding: 1.5rem; /* Slightly reduce padding */
+        backdrop-filter: blur(8px); /* Reduced blur on mobile */
+        -webkit-backdrop-filter: blur(8px);
     }
-    
+    .navbar { /* Reduce floating margins on tablet */
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        width: calc(100% - 30px);
+    }
     .contact-container {
         grid-template-columns: 1fr;
     }
-}
-
-@media screen and (max-width: 768px) {
-    .navbar-menu {
-        position: fixed;
-        top: -100%;
-        left: 0;
-        width: 100%;
+    .about-content {
         flex-direction: column;
-        background-color: var(--secondary-color);
-        padding: 2rem 0;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar-menu.active {
-        top: 60px;
-    }
-    
-    .navbar-menu li {
-        margin: 1rem 0;
         text-align: center;
-    }
-    
-    .navbar-toggle {
-        display: block;
-    }
-    
-    .navbar-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    
-    .navbar-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .navbar-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 1.5rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .skills-container {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
+        padding: 2rem;
     }
 }
 
 @media screen and (max-width: 768px) {
+    .navbar {
+        top: 10px; /* Further reduce floating margins on mobile */
+        left: 10px;
+        right: 10px;
+        width: calc(100% - 20px);
+        backdrop-filter: blur(10px); /* Reduce blur for mobile navbar */
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .navbar-container {
+        padding: 0.5rem 1rem;
+    }
+
     .navbar-menu {
         position: fixed;
         top: 0;
@@ -824,51 +888,130 @@ footer {
         width: 100%;
         height: 100vh;
         flex-direction: column;
-        background-color: var(--secondary-color);
-        padding: 4rem 0;
-        transition: all 0.3s ease;
-        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.85); /* Slightly more opaque for mobile menu */
+        backdrop-filter: blur(10px); /* Consistent blur for mobile menu */
+        -webkit-backdrop-filter: blur(10px);
+        padding: 2rem 0;
+        transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        box-shadow: 0 10px 15px var(--shadow-color);
+        z-index: 1001;
         transform: translateX(-100%);
+        opacity: 0;
+        border-radius: 0;
     }
-    
+
     .navbar-menu.active {
         transform: translateX(0);
+        opacity: 1;
     }
-    
+
     .navbar-menu li {
         margin: 1.5rem 0;
         text-align: center;
     }
-    
+
     .navbar-menu a {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
-    
-    .menu-close-btn {
+
+    .navbar-toggle {
         display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
+        z-index: 1002;
+    }
+
+    .navbar-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .navbar-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .skills-container, .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-close-btn {
+        display: flex; /* Changed from block to flex for centering icon */
+        position: fixed;
+        top: 25px;
+        right: 25px;
         background: none;
         border: none;
-        color: var(--text-color);
-        font-size: 1.5rem;
+        color: var(--text-color-primary);
+        font-size: 1.8rem;
         cursor: pointer;
-        z-index: 1000;
+        z-index: 1003;
         width: 40px;
         height: 40px;
-        display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        transition: all 0.3s ease;
+        transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out; /* Specific properties */
     }
-    
+
     .menu-close-btn:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: var(--accent-color);
+        background-color: var(--shadow-color);
+        color: var(--accent-color-primary);
+    }
+
+    .about-content {
+        padding: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.75); /* More opaque cards on mobile */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    .timeline-content, .contact-info, .contact-form, .skills-category, .education-item, .project-card, .ia-model-card {
+        padding: 1rem; /* Further reduce padding for cards on mobile */
+        background-color: rgba(255, 255, 255, 0.75); /* More opaque cards on mobile */
+        backdrop-filter: blur(5px); /* Greatly reduce blur on mobile cards */
+        -webkit-backdrop-filter: blur(5px);
+        box-shadow: 0 4px 15px var(--shadow-color); /* Softer shadow on mobile */
+    }
+
+    .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 50px !important; /* Adjusted margin */
+    }
+    .timeline::before, .timeline-dot {
+        left: 20px;
+    }
+    .ia-model-card { /* Already covered by the general card update above */
+        flex-direction: column;
+    }
+
+    .ia-model-icon {
+        width: 100%;
+        padding: 1.2rem;
+    }
+
+    .ia-model-content {
+        width: 100%;
+    }
+
+    .section-description {
+        padding: 0 1rem;
     }
 }
+
 
 /* Ocultar el botón de cierre en pantallas grandes por defecto */
 .menu-close-btn {
@@ -876,8 +1019,6 @@ footer {
 }
 
 /* Estilos actualizados para la sección de Experiencia en IA */
-
-/* IA Experience Section */
 .ia-experience {
     background-color: var(--primary-color);
     padding: 4rem 0;
@@ -885,7 +1026,7 @@ footer {
 
 .section-description {
     text-align: center;
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
     font-size: 1.1rem;
     margin-bottom: 3rem;
     max-width: 800px;
@@ -902,20 +1043,22 @@ footer {
 }
 
 .ia-model-card {
-    background-color: rgba(33, 38, 45, 0.6);
-    border-radius: 12px;
+    background-color: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-large);
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px var(--shadow-color);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Refined easing */
     display: flex;
     align-items: flex-start;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--card-border-color);
 }
 
 .ia-model-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-color);
+    box-shadow: 0 12px 30px var(--shadow-color);
+    border-color: var(--accent-color-primary);
 }
 
 .ia-model-icon {
@@ -928,7 +1071,7 @@ footer {
 
 .ia-model-icon i {
     font-size: 2rem;
-    background: linear-gradient(135deg, #5e72e4, #8c66ff);
+    background: linear-gradient(135deg, var(--accent-color-primary), var(--accent-color-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -939,13 +1082,13 @@ footer {
 }
 
 .ia-model-content h3 {
-    color: #fff;
+    color: var(--text-color-primary);
     font-size: 1.3rem;
     margin-bottom: 0.8rem;
 }
 
 .ia-model-content p {
-    color: var(--text-secondary);
+    color: var(--text-color-secondary);
     margin-bottom: 1rem;
     font-size: 0.95rem;
 }
@@ -959,52 +1102,79 @@ footer {
     display: flex;
     align-items: center;
     margin-bottom: 0.6rem;
-    color: var(--text-color);
+    color: var(--text-color-secondary);
     font-size: 0.9rem;
 }
 
 .ia-model-list li i {
-    color: #8c66ff;
+    color: var(--accent-color-secondary);
     margin-right: 0.8rem;
     font-size: 0.8rem;
 }
 
-/* Media queries */
-@media screen and (max-width: 768px) {
-    .ia-model-card {
-        flex-direction: column;
+
+/* Keyframe animation for cards */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Slightly increased distance */
     }
-    
-    .ia-model-icon {
-        width: 100%;
-        padding: 1.2rem;
-    }
-    
-    .ia-model-content {
-        width: 100%;
-    }
-    
-    .section-description {
-        padding: 0 1rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Animación para las tarjetas */
-.ia-model-card {
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+/* Class to apply this animation - to be used with JavaScript for on-scroll reveal */
+/* For CSS-only on-load animation, this is how it's defined */
+.animate-on-load {
+    opacity: 0; /* Start hidden */
+    animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; /* Added a slight delay */
 }
 
-.ia-model-card:nth-child(2) {
-    transition-delay: 0.1s;
+
+/* Applying the on-load animation to relevant cards */
+/* The .animate class will be added by JS for true on-scroll,
+   but these will animate on load by default if JS isn't used for this.
+   The previous generic .animate selector was removed to avoid conflict
+   if JS is used to add .animate-on-load or a similar class.
+   We assume the .animate class was for JS, and .animate-on-load for CSS fallback.
+*/
+.ia-model-card,
+.project-card,
+.timeline-item .timeline-content, /* More specific selector for timeline items */
+.education-item,
+.skills-category,
+.about-content,
+.contact-form,
+.contact-info {
+    /* Ensure these elements start correctly for the animation if it's applied */
+    /* opacity: 0; will be handled by .animate-on-load if that class is used,
+       or by JS if it adds a class like 'visible' or 'animate' */
 }
 
-.ia-model-card:nth-child(3) {
-    transition-delay: 0.2s;
-}
 
-.ia-model-card.animate {
+/* Stagger animations for lists of cards if desired (example for ia-model-card) */
+/* This is more effectively done with JS, but CSS can do a basic version */
+.projects-grid .project-card:nth-child(1), .ia-models-container .ia-model-card:nth-child(1) { animation-delay: 0.1s; }
+.projects-grid .project-card:nth-child(2), .ia-models-container .ia-model-card:nth-child(2) { animation-delay: 0.2s; }
+.projects-grid .project-card:nth-child(3), .ia-models-container .ia-model-card:nth-child(3) { animation-delay: 0.3s; }
+/* Add more nth-child selectors as needed for other card lists */
+.timeline-item:nth-child(1) .timeline-content { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) .timeline-content { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) .timeline-content { animation-delay: 0.3s; }
+
+/* Ensure the .animate class is used if JS is handling the scroll animations */
+/* The .animate-on-load is for a CSS-driven initial load animation */
+.ia-model-card.animate,
+.project-card.animate,
+.timeline-item .timeline-content.animate,
+.education-item.animate,
+.skills-category.animate,
+.about-content.animate,
+.contact-form.animate,
+.contact-info.animate {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
+    animation: fadeInSlideUp 0.6s ease-out forwards; /* Apply animation if .animate is added by JS */
 }
